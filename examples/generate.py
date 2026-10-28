@@ -14,7 +14,11 @@ CASES = [
     ("followup", "多久生效？", ["--history-file", "examples/history.json"]),
     ("tool_failure", "报销期限多久", ["--fail-tool", "search"]),
     ("source_changed", "报销期限多久", ["--data", "data/variants/aligned_documents.json"]),
+    ("step_limit", "忘记企业邮箱密码怎么办", ["--max-steps", "1"]),
 ]
+EXPECTED = {"clear_answer": "answered", "conflict": "needs_clarification",
+            "outside": "insufficient_data", "rewrite": "answered", "followup": "answered",
+            "tool_failure": "tool_error", "source_changed": "answered", "step_limit": "incomplete"}
 
 
 def main():
@@ -39,6 +43,9 @@ def main():
                         "exit_code": completed.returncode, "file": str(path.relative_to(root))})
         print(name + ": " + result["status"] + " (" + str(result["steps"]) + " steps)")
     (folder / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    failed = [row["case"] for row in summary if row.get("status") != EXPECTED[row["case"]]]
+    if failed:
+        raise SystemExit("unexpected status in: " + ", ".join(failed))
 
 
 if __name__ == "__main__":

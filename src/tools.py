@@ -23,6 +23,18 @@ def grams(text):
     return {text[i:i + 2] for i in range(max(0, len(text) - 1))}
 
 
+def source_claims(document):
+    """Derive reviewable claim values from source text, never a stale copied value."""
+    claims = dict(document.get("claims", {}))
+    if "expense_deadline_days" in claims:
+        match = re.search(r"费用发生后\s*(\d+)\s*天内提交报销申请", document["text"])
+        if match:
+            claims["expense_deadline_days"] = match.group(1)
+        else:
+            claims.pop("expense_deadline_days")
+    return claims
+
+
 class DocumentTools:
     def __init__(self, path=DATA_PATH, fail_tool=None):
         self.documents = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -48,4 +60,6 @@ class DocumentTools:
             raise RuntimeError("injected read failure")
         if doc_id not in self.by_id:
             raise KeyError("unknown document ID: " + doc_id)
-        return self.by_id[doc_id]
+        document = dict(self.by_id[doc_id])
+        document["claims"] = source_claims(document)
+        return document

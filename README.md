@@ -4,10 +4,10 @@
 
 ## 评审入口
 
-- [真实模型运行结果](examples/deepseek/summary.json)：六个验收用例及一次资料替换实验；逐案 JSON 包含输入、实际输出和完整 Trace。
+- [真实模型运行结果](examples/deepseek/summary.json)：六个验收用例、一次资料替换实验和步数上限；逐案 JSON 包含输入、实际输出和完整 Trace。
 - [评估报告](docs/03-evaluation.md)：预期、实测、失败与边界。
 - [核心循环](src/agent.py)：模型选动作、工具执行、观察结果回传与步数上限。
-- [离线测试](tests/test_agent.py)：不需要 API Key。
+- [离线测试](tests/test_agent.py)和[样例核验器](examples/verify.py)：不需要 API Key。
 
 ## 环境与运行
 
@@ -15,6 +15,8 @@ Python 3.9+，无第三方运行依赖。将 `.env.example` 复制为 `.env`，�
 
 ```bash
 python3 -m unittest discover -s tests -v
+python3 examples/verify.py deepseek
+python3 examples/evaluate_retrieval.py
 python3 -m src.cli '忘记企业邮箱密码怎么办' --model deepseek
 python3 -m src.cli '报销期限多久' --model deepseek --trace-file examples/my_run.json
 python3 -m src.cli '多久生效？' --model deepseek --history-file examples/history.json
@@ -26,16 +28,18 @@ python3 -m src.cli '多久生效？' --model deepseek --history-file examples/hi
 python3 -m src.cli '报销期限多久' --model mock
 python3 examples/generate.py --model mock
 python3 examples/generate.py --model deepseek
+python3 examples/verify.py mock
 ```
 
-`--fail-tool search` 或 `--fail-tool read` 注入故障；`--max-steps 8` 控制最大模型决策步数；`--data path/to/docs.json` 替换资料。输出状态：`answered`、`needs_clarification`、`insufficient_data`、`tool_error`、`model_error`、`incomplete`。CLI 对 `tool_error`、`model_error`、`incomplete` 返回退出码 2，其余返回 0。
+`--fail-tool search` 或 `--fail-tool read` 注入故障；`--max-steps 8` 控制最大模型决策步数；`--data path/to/docs.json` 替换资料。输出状态：`answered`、`needs_clarification`、`insufficient_data`、`tool_error`、`model_error`、`incomplete`。CLI 对 `tool_error`、`model_error`、`incomplete` 返回退出码 2，其余返回 0。步数上限的实际输出见 [step_limit.json](examples/deepseek/step_limit.json)。每步 Trace 的 `next_action` 显示模型观察工具结果后选择的后续动作。
 
 ## 目录
 
 - `src/`：Agent 循环、模型接口、检索和读取工具、CLI。
 - `data/`：合成制度和 FAQ；`data/variants/` 为资料替换实验。
+- `data/retrieval_cases.json`：13 个固定检索问题及预期文档 ID。
 - `tests/`：可执行单元测试。
-- `examples/deepseek/`：真实模型实际输出；`examples/mock/`：离线流程输出。
+- `examples/deepseek/`：真实模型实际输出；`examples/mock/`：离线流程输出；`examples/retrieval_evaluation.json`：检索对比结果。
 - `docs/`：需求、方案、评估、AI 使用与复盘。
 
 文档和员工资料均为合成数据，不代表真实企业政策。

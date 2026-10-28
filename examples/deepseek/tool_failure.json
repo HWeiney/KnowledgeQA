@@ -1,62 +1,78 @@
 {
   "status": "tool_error",
-  "answer": "抱歉，检索工具连续多次失败，暂时无法获取报销期限的相关制度原文，因此无法给出可靠答案。请稍后重试，或直接提供相关制度文档以便查询。",
+  "answer": "抱歉，检索工具连续多次失败，我未能读取到任何报销制度原文，因此无法确认报销期限。请稍后重试，或直接提供相关制度文档。",
   "citations": [],
-  "gap": "未能检索到任何报销制度文档，缺少报销期限的原文依据",
+  "gap": "未能检索到报销制度原文，缺少报销期限的具体规定",
   "trace": [
     {
       "step": 1,
       "action": "search",
-      "reason": "先检索报销期限相关制度",
+      "reason": "需检索报销相关制度原文",
       "parameters": {
         "query": "报销期限"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "search"
     },
     {
       "step": 2,
       "action": "search",
-      "reason": "首次检索失败，换关键词重试",
+      "reason": "上次检索失败，换查询词重试",
       "parameters": {
         "query": "费用报销 时限 规定"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "search"
     },
     {
       "step": 3,
       "action": "search",
-      "reason": "前两次检索工具失败，换关键词再试一次",
+      "reason": "前两次检索工具失败，换查询词重试",
       "parameters": {
-        "query": "报销 制度 期限"
+        "query": "报销 制度 时限"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "search"
     },
     {
       "step": 4,
       "action": "search",
-      "reason": "前三次检索工具失败，换更宽泛的制度名称再试一次",
+      "reason": "前几次检索工具失败，换更宽泛查询词重试",
       "parameters": {
-        "query": "报销管理办法"
+        "query": "报销 管理办法"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "search"
     },
     {
       "step": 5,
       "action": "search",
-      "reason": "前四次检索均工具失败，换更宽泛制度名称再试一次",
+      "reason": "前几次检索工具失败，换更宽泛查询词重试",
       "parameters": {
-        "query": "费用报销管理办法"
+        "query": "报销 管理办法"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "search"
     },
     {
       "step": 6,
+      "action": "search",
+      "reason": "此前检索均工具失败，换查询词重试",
+      "parameters": {
+        "query": "报销 管理办法"
+      },
+      "error": "injected search failure",
+      "next_action": "finish"
+    },
+    {
+      "step": 7,
       "action": "finish",
-      "reason": "多次检索均工具失败，无原文可引用",
-      "result_summary": "结束：tool_error"
+      "reason": "多次检索均工具失败，无文档可引用",
+      "result_summary": "结束：tool_error",
+      "next_action": null
     }
   ],
-  "steps": 6,
+  "steps": 7,
   "input": {
     "question": "报销期限多久",
     "history": [],

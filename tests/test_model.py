@@ -30,6 +30,18 @@ class ModelContractTests(unittest.TestCase):
         self.assertEqual(sent["thinking"], {"type": "disabled"})
         self.assertEqual(sent["response_format"], {"type": "json_object"})
 
+    def test_trailing_text_is_audited(self):
+        payload = {"choices": [{"finish_reason": "stop", "message": {"content":
+                   '{"action":"search","query":"食堂"}\nextra model text'}}]}
+
+        def fake_urlopen(request, timeout):
+            return FakeResponse(json.dumps(payload).encode())
+
+        with patch.dict(os.environ, {"DEEPSEEK_API_KEY": "test-key"}), patch("urllib.request.urlopen", fake_urlopen):
+            decision = DeepSeekModel().decide([{"role": "user", "content": "json"}])
+        self.assertEqual(decision["action"], "search")
+        self.assertIn("trailing text", decision["_format_warning"])
+
 
 if __name__ == "__main__":
     unittest.main()

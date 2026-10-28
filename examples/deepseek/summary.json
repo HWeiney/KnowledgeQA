@@ -3,42 +3,56 @@
     "case": "clear_answer",
     "status": "answered",
     "steps": 3,
+    "exit_code": 0,
     "file": "examples/deepseek/clear_answer.json"
   },
   {
     "case": "conflict",
     "status": "needs_clarification",
     "steps": 4,
+    "exit_code": 0,
     "file": "examples/deepseek/conflict.json"
   },
   {
     "case": "outside",
     "status": "insufficient_data",
     "steps": 6,
+    "exit_code": 0,
     "file": "examples/deepseek/outside.json"
   },
   {
     "case": "rewrite",
     "status": "answered",
     "steps": 3,
+    "exit_code": 0,
     "file": "examples/deepseek/rewrite.json"
   },
   {
     "case": "followup",
     "status": "answered",
     "steps": 3,
+    "exit_code": 0,
     "file": "examples/deepseek/followup.json"
   },
   {
     "case": "tool_failure",
     "status": "tool_error",
-    "steps": 6,
+    "steps": 7,
+    "exit_code": 2,
     "file": "examples/deepseek/tool_failure.json"
   },
   {
     "case": "source_changed",
     "status": "answered",
     "steps": 4,
+    "exit_code": 0,
     "file": "examples/deepseek/source_changed.json"
+  },
+  {
+    "case": "step_limit",
+    "status": "incomplete",
+    "steps": 1,
+    "exit_code": 2,
+    "file": "examples/deepseek/step_limit.json"
   }
 ]

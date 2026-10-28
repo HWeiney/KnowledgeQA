@@ -1,0 +1,194 @@
+{
+  "total": 13,
+  "baseline_passed": 11,
+  "alias_passed": 13,
+  "cases": [
+    {
+      "query": "报销期限多久",
+      "expected_ids": [
+        "D01",
+        "D02"
+      ],
+      "baseline_top3": [
+        "D01",
+        "D02"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D01",
+        "D02"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "费用发生后多久要报账",
+      "expected_ids": [
+        "D01",
+        "D02"
+      ],
+      "baseline_top3": [
+        "D01",
+        "D02"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D01",
+        "D02"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "报账期限",
+      "expected_ids": [
+        "D01",
+        "D02"
+      ],
+      "baseline_top3": [],
+      "baseline_pass": false,
+      "alias_top3": [
+        "D01",
+        "D02"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "超过期限还能申请报销吗",
+      "expected_ids": [
+        "D01",
+        "D02"
+      ],
+      "baseline_top3": [
+        "D01",
+        "D02",
+        "D04"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D01",
+        "D02",
+        "D04"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "忘记企业邮箱密码怎么办",
+      "expected_ids": [
+        "D03"
+      ],
+      "baseline_top3": [
+        "D03"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D03"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "忘记公司邮件登录口令怎么办",
+      "expected_ids": [
+        "D03"
+      ],
+      "baseline_top3": [
+        "D03"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D03"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "公司邮件口令找回",
+      "expected_ids": [
+        "D03"
+      ],
+      "baseline_top3": [],
+      "baseline_pass": false,
+      "alias_top3": [
+        "D03"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "重置企业邮箱密码要多久生效",
+      "expected_ids": [
+        "D03"
+      ],
+      "baseline_top3": [
+        "D03"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D03"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "新员工如何开通产品后台账号",
+      "expected_ids": [
+        "D04"
+      ],
+      "baseline_top3": [
+        "D04",
+        "D01",
+        "D02"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D04",
+        "D01",
+        "D02"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "产品系统账号谁申请",
+      "expected_ids": [
+        "D04"
+      ],
+      "baseline_top3": [
+        "D04",
+        "D01",
+        "D02"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D04",
+        "D01",
+        "D02"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "后台开通要几个工作日",
+      "expected_ids": [
+        "D04"
+      ],
+      "baseline_top3": [
+        "D04"
+      ],
+      "baseline_pass": true,
+      "alias_top3": [
+        "D04"
+      ],
+      "alias_pass": true
+    },
+    {
+      "query": "食堂周末营业吗",
+      "expected_ids": [],
+      "baseline_top3": [],
+      "baseline_pass": true,
+      "alias_top3": [],
+      "alias_pass": true
+    },
+    {
+      "query": "年假有几天",
+      "expected_ids": [],
+      "baseline_top3": [],
+      "baseline_pass": true,
+      "alias_top3": [],
+      "alias_pass": true
+    }
+  ]
+}

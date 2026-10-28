@@ -1,6 +1,6 @@
 {
   "status": "answered",
-  "answer": "根据《员工费用报销制度》，员工应在费用发生后30天内提交报销申请；逾期申请需说明原因。制度A（2026-01-10）与制度B（2026-04-01）在这一点上规定一致。",
+  "answer": "根据《员工费用报销制度（A）》和《员工费用报销制度（B）》，员工应在费用发生后30天内提交报销申请；逾期申请需说明原因。两个版本在这一点上规定一致。",
   "citations": [
     {
       "doc_id": "D01",
@@ -16,7 +16,7 @@
     {
       "step": 1,
       "action": "search",
-      "reason": "先检索报销期限相关规定",
+      "reason": "需检索报销相关制度原文",
       "parameters": {
         "query": "报销期限"
       },
@@ -36,12 +36,13 @@
           "preview": "员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
         }
       ],
-      "result_summary": "找到 2 篇文档：D01, D02"
+      "result_summary": "找到 2 篇文档：D01, D02",
+      "next_action": "read"
     },
     {
       "step": 2,
       "action": "read",
-      "reason": "读取原文以确认报销期限条款",
+      "reason": "需读取原文确认报销期限条款",
       "parameters": {
         "doc_id": "D01"
       },
@@ -54,12 +55,13 @@
           "expense_deadline_days": "30"
         }
       },
-      "result_summary": "D01 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
+      "result_summary": "D01 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+      "next_action": "read"
     },
     {
       "step": 3,
       "action": "read",
-      "reason": "核对另一版本原文是否一致",
+      "reason": "需核对另一版本原文是否与D01一致",
       "parameters": {
         "doc_id": "D02"
       },
@@ -72,13 +74,15 @@
           "expense_deadline_days": "30"
         }
       },
-      "result_summary": "D02 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
+      "result_summary": "D02 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+      "next_action": "finish"
     },
     {
       "step": 4,
       "action": "finish",
       "reason": "两版制度原文一致，均规定30天期限",
-      "result_summary": "结束：answered"
+      "result_summary": "结束：answered",
+      "next_action": null
     }
   ],
   "steps": 4,

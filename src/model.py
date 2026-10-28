@@ -47,7 +47,14 @@ class DeepSeekModel:
         try:
             return json.loads(content)
         except json.JSONDecodeError as exc:
-            raise ValueError("model returned invalid JSON: " + repr(content[:240])) from exc
+            try:
+                value, end = json.JSONDecoder().raw_decode(content.lstrip())
+            except json.JSONDecodeError:
+                raise ValueError("model returned invalid JSON: " + repr(content[:240])) from exc
+            if not isinstance(value, dict) or not content.lstrip()[end:].strip():
+                raise ValueError("model returned invalid JSON: " + repr(content[:240])) from exc
+            value["_format_warning"] = "ignored trailing text after first valid JSON object"
+            return value
 
 
 class MockModel:

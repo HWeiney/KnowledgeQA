@@ -12,13 +12,15 @@
         "query": "食堂周末营业吗"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "finish"
     },
     {
       "step": 2,
       "action": "finish",
       "reason": "检索无结果",
-      "result_summary": "结束：insufficient_data"
+      "result_summary": "结束：insufficient_data",
+      "next_action": null
     }
   ],
   "steps": 2,

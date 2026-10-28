@@ -12,7 +12,7 @@
     {
       "step": 1,
       "action": "search",
-      "reason": "追问“多久生效”指密码重置生效时间，需检索相关制度",
+      "reason": "用户追问密码重置多久生效，需检索相关制度",
       "parameters": {
         "query": "企业邮箱密码重置 生效时间"
       },
@@ -25,7 +25,8 @@
           "preview": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置"
         }
       ],
-      "result_summary": "找到 1 篇文档：D03"
+      "result_summary": "找到 1 篇文档：D03",
+      "next_action": "read"
     },
     {
       "step": 2,
@@ -44,13 +45,15 @@
           "mail_reset_time": "10分钟内"
         }
       },
-      "result_summary": "D03 原文：忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。"
+      "result_summary": "D03 原文：忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。",
+      "next_action": "finish"
     },
     {
       "step": 3,
       "action": "finish",
       "reason": "已读取原文，明确密码重置生效时间",
-      "result_summary": "结束：answered"
+      "result_summary": "结束：answered",
+      "next_action": null
     }
   ],
   "steps": 3,

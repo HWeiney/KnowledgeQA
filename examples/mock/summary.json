@@ -47,5 +47,12 @@
     "steps": 4,
     "exit_code": 0,
     "file": "examples/mock/source_changed.json"
+  },
+  {
+    "case": "step_limit",
+    "status": "incomplete",
+    "steps": 1,
+    "exit_code": 2,
+    "file": "examples/mock/step_limit.json"
   }
 ]

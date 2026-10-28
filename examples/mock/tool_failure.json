@@ -11,13 +11,15 @@
       "parameters": {
         "query": "报销期限多久"
       },
-      "error": "injected search failure"
+      "error": "injected search failure",
+      "next_action": "finish"
     },
     {
       "step": 2,
       "action": "finish",
       "reason": "无法取得可靠资料",
-      "result_summary": "结束：tool_error"
+      "result_summary": "结束：tool_error",
+      "next_action": null
     }
   ],
   "steps": 2,

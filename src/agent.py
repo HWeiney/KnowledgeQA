@@ -1,4 +1,5 @@
 import json
+import re
 
 
 SYSTEM = """你是企业知识问答 Agent。每一步只输出一个 JSON 对象，不输出 Markdown 或内部思维过程。
@@ -7,7 +8,7 @@ SYSTEM = """你是企业知识问答 Agent。每一步只输出一个 JSON 对�
 {"action":"read","doc_id":"D01","reason":"简短依据"}
 {"action":"ask_clarification","status":"needs_clarification","answer":"冲突或追问内容","citations":[{"doc_id":"D01","quote":"原文中的连续片段"}],"gap":"还缺什么","reason":"简短依据"}
 {"action":"finish","status":"answered|insufficient_data|tool_error","answer":"给用户的答案","citations":[{"doc_id":"D01","quote":"原文中的连续片段"}],"gap":"还缺什么","reason":"简短依据"}
-先检索，读取原文后再回答。仅检索摘要不能作为引用。引用必须逐字出自已读取文档。资料不足时继续检索或说明缺口。遇到互相矛盾且无适用范围/优先级依据的资料，列出冲突和两个引用并请求确认，不得擅自选择较新版本。工具失败时可换查询或结束，绝不编造。对话历史可用于理解追问。reason 仅写可公开的简短决策依据。"""
+先检索，读取原文后再回答。仅检索摘要不能作为引用。引用必须逐字出自已读取文档。资料不足时继续检索或说明缺口。遇到互相矛盾且无适用范围/优先级依据的资料，列出冲突和两个引用并请求确认，不得擅自选择较新版本。工具失败时可换查询或结束，绝不编造；若没有读到文档，不得臆造具体制度名称、部门或期限。对话历史可用于理解追问。reason 仅写可公开的简短决策依据。"""
 
 
 def conflicts(docs):
@@ -22,18 +23,26 @@ def validate_final(decision, read_docs):
     status = decision.get("status")
     if status not in {"answered", "insufficient_data", "tool_error", "needs_clarification"}:
         return "invalid status"
+    if not isinstance(decision.get("answer"), str) or not decision["answer"].strip():
+        return "answer must be a non-empty string"
+    if not isinstance(decision.get("gap"), str):
+        return "gap must be a string"
+    if status != "answered" and not decision["gap"].strip():
+        return "non-answer status requires a data gap"
     citations = decision.get("citations", [])
     if not isinstance(citations, list):
         return "citations must be a list"
     for c in citations:
-        if not isinstance(c, dict) or c.get("doc_id") not in read_docs:
+        if not isinstance(c, dict) or not isinstance(c.get("doc_id"), str) or c["doc_id"] not in read_docs:
             return "citation refers to an unread document"
-        if not c.get("quote") or c["quote"] not in read_docs[c["doc_id"]]["text"]:
+        if not isinstance(c.get("quote"), str) or not c["quote"] or c["quote"] not in read_docs[c["doc_id"]]["text"]:
             return "citation quote does not match source text"
     if status == "answered" and not citations:
         return "answered requires a source citation"
     if status == "answered" and conflicts(read_docs):
         return "read documents contain unresolved conflicting claims; clarify instead"
+    if status in {"tool_error", "insufficient_data"} and not read_docs and re.search(r"《[^》]+》", decision.get("answer", "")):
+        return "cannot name a specific unread policy document"
     if status == "needs_clarification" and conflicts(read_docs) and len({c["doc_id"] for c in citations}) < 2:
         return "conflict clarification requires both source citations"
     return None
@@ -51,10 +60,18 @@ def run_agent(question, model, tools, history=None, max_steps=8):
         try:
             decision = model.decide(messages)
         except Exception as exc:
+            if events:
+                events[-1]["next_action"] = "model_error"
             return {"status": "model_error", "answer": "模型调用失败，任务未完成。", "citations": [],
                     "gap": str(exc), "trace": events, "steps": step}
+        if not isinstance(decision, dict):
+            decision = {"action": None, "reason": "模型输出不是 JSON 对象"}
         action = decision.get("action")
+        if events:
+            events[-1]["next_action"] = action
         event = {"step": step, "action": action, "reason": decision.get("reason", "")}
+        if decision.get("_format_warning"):
+            event["format_warning"] = decision["_format_warning"]
         if action == "search":
             query = decision.get("query", "")
             event["parameters"] = {"query": query}
@@ -87,6 +104,7 @@ def run_agent(question, model, tools, history=None, max_steps=8):
                 events.append(event)
                 continue
             event["result_summary"] = "结束：" + decision["status"]
+            event["next_action"] = None
             events.append(event)
             return {"status": decision["status"], "answer": decision.get("answer", ""),
                     "citations": decision.get("citations", []), "gap": decision.get("gap", ""),
@@ -94,5 +112,7 @@ def run_agent(question, model, tools, history=None, max_steps=8):
         else:
             event["error"] = "invalid action; choose search, read, ask_clarification or finish"
             events.append(event)
+    if events:
+        events[-1]["next_action"] = "incomplete"
     return {"status": "incomplete", "answer": "达到最大执行步数，任务未完成。", "citations": [],
             "gap": "需要继续检索或核实资料", "trace": events, "steps": max_steps}

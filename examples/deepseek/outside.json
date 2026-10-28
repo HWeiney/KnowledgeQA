@@ -1,64 +1,70 @@
 {
   "status": "insufficient_data",
-  "answer": "抱歉，知识库中未检索到关于食堂营业时间（包括周末是否营业）的相关资料，无法确认周末是否营业。建议咨询食堂管理部门或查看公司公告。",
+  "answer": "未能在知识库中检索到任何与食堂营业安排相关的文档，因此无法确认食堂周末是否营业。建议咨询食堂管理部门或查看食堂现场公告。",
   "citations": [],
-  "gap": "缺少食堂营业时间/周末安排的相关文档",
+  "gap": "缺少食堂营业时间/周末安排相关的制度或通知文档",
   "trace": [
     {
       "step": 1,
       "action": "search",
-      "reason": "查找食堂营业时间相关规定",
+      "reason": "需查找食堂营业安排相关制度",
       "parameters": {
         "query": "食堂 周末 营业时间"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "search"
     },
     {
       "step": 2,
       "action": "search",
-      "reason": "首次检索无结果，换关键词再查",
+      "reason": "首次检索无结果，换关键词继续查找",
       "parameters": {
-        "query": "食堂 营业 时间 安排"
+        "query": "食堂 营业时间 安排"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "search"
     },
     {
       "step": 3,
       "action": "search",
-      "reason": "前两次检索无结果，换更宽泛关键词再查",
+      "reason": "前两次检索无结果，换更宽泛关键词继续查找",
       "parameters": {
-        "query": "食堂 开放 时间"
+        "query": "食堂 就餐 管理规定"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "search"
     },
     {
       "step": 4,
       "action": "search",
-      "reason": "前三次检索无结果，换更宽泛关键词再查",
+      "reason": "前三次检索无结果，换更简短关键词再试",
       "parameters": {
-        "query": "食堂 就餐 安排"
+        "query": "食堂 周末"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "search"
     },
     {
       "step": 5,
       "action": "search",
-      "reason": "多次检索无结果，换更宽泛关键词再查",
+      "reason": "多次组合检索无结果，改用最宽泛关键词查找相关文档",
       "parameters": {
-        "query": "食堂 管理规定"
+        "query": "食堂"
       },
       "result": [],
-      "result_summary": "找到 0 篇文档："
+      "result_summary": "找到 0 篇文档：",
+      "next_action": "finish"
     },
     {
       "step": 6,
       "action": "finish",
-      "reason": "多次更换关键词检索均无结果，资料不足",
-      "result_summary": "结束：insufficient_data"
+      "reason": "多轮检索均无结果，无原文可引用",
+      "result_summary": "结束：insufficient_data",
+      "next_action": null
     }
   ],
   "steps": 6,

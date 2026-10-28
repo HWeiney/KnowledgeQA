@@ -32,7 +32,8 @@
           "preview": "员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
         }
       ],
-      "result_summary": "找到 2 篇文档：D01, D02"
+      "result_summary": "找到 2 篇文档：D01, D02",
+      "next_action": "read"
     },
     {
       "step": 2,
@@ -50,7 +51,8 @@
           "expense_deadline_days": "30"
         }
       },
-      "result_summary": "D01 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
+      "result_summary": "D01 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+      "next_action": "read"
     },
     {
       "step": 3,
@@ -68,13 +70,15 @@
           "expense_deadline_days": "30"
         }
       },
-      "result_summary": "D02 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。"
+      "result_summary": "D02 原文：员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+      "next_action": "finish"
     },
     {
       "step": 4,
       "action": "finish",
       "reason": "找到原文",
-      "result_summary": "结束：answered"
+      "result_summary": "结束：answered",
+      "next_action": null
     }
   ],
   "steps": 4,
