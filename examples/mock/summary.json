@@ -40,5 +40,12 @@
     "steps": 2,
     "exit_code": 2,
     "file": "examples/mock/tool_failure.json"
+  },
+  {
+    "case": "source_changed",
+    "status": "answered",
+    "steps": 4,
+    "exit_code": 0,
+    "file": "examples/mock/source_changed.json"
   }
 ]

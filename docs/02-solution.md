@@ -14,7 +14,7 @@ Trace 记录每步动作、参数、返回摘要、可公开的简短决策依�
 
 ## 模型与框架
 
-使用 DeepSeek Chat Completions API，模型 `deepseek-flash`，通过 Python 标准库 `urllib` 接入；未采用 Agent 框架，因此没有框架 Runtime 依赖。选择原生实现是为了在短时间内让动作、观察和校验边界易于审查。配置位于 `.env.example`。`MockModel` 是确定性流程替身，不作为真实决策证据。
+使用 DeepSeek Chat Completions API，模型 `deepseek-flash`，通过 Python 标准库 `urllib` 接入。请求关闭思考模式并启用 JSON Output，以减少动作 JSON 混入额外文本的风险；未采用 Agent 框架，因此没有框架 Runtime 依赖。选择原生实现是为了在短时间内让动作、观察和校验边界易于审查。配置位于 `.env.example`。`MockModel` 是确定性流程替身，不作为真实决策证据。
 
 ## 状态与错误
 

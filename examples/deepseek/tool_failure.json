@@ -1,44 +1,62 @@
 {
   "status": "tool_error",
-  "answer": "抱歉，检索工具连续多次失败（已分别用“报销期限 规定”“费用报销 时限 制度”“报销 提交 时间 要求”检索），我目前无法读取任何报销制度原文，因此不能给出报销期限的准确答案，也不会凭空编造。请稍后重试，或直接告知报销制度文档编号/名称，我再为您核对。",
+  "answer": "抱歉，检索工具连续多次失败，暂时无法获取报销期限的相关制度原文，因此无法给出可靠答案。请稍后重试，或直接提供相关制度文档以便查询。",
   "citations": [],
-  "gap": "检索工具不可用，未能读取任何报销制度原文，缺少可引用的期限条款。",
+  "gap": "未能检索到任何报销制度文档，缺少报销期限的原文依据",
   "trace": [
     {
       "step": 1,
       "action": "search",
-      "reason": "需查找报销时效相关制度",
+      "reason": "先检索报销期限相关制度",
       "parameters": {
-        "query": "报销期限 规定"
+        "query": "报销期限"
       },
       "error": "injected search failure"
     },
     {
       "step": 2,
       "action": "search",
-      "reason": "上次检索工具失败，换查询重试",
+      "reason": "首次检索失败，换关键词重试",
       "parameters": {
-        "query": "费用报销 时限 制度"
+        "query": "费用报销 时限 规定"
       },
       "error": "injected search failure"
     },
     {
       "step": 3,
       "action": "search",
-      "reason": "前两次检索工具失败，换同义词再试一次",
+      "reason": "前两次检索工具失败，换关键词再试一次",
       "parameters": {
-        "query": "报销 提交 时间 要求"
+        "query": "报销 制度 期限"
       },
       "error": "injected search failure"
     },
     {
       "step": 4,
+      "action": "search",
+      "reason": "前三次检索工具失败，换更宽泛的制度名称再试一次",
+      "parameters": {
+        "query": "报销管理办法"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 5,
+      "action": "search",
+      "reason": "前四次检索均工具失败，换更宽泛制度名称再试一次",
+      "parameters": {
+        "query": "费用报销管理办法"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 6,
       "action": "finish",
-      "reason": "三次检索均返回工具失败，无原文可引用。",
+      "reason": "多次检索均工具失败，无原文可引用",
       "result_summary": "结束：tool_error"
     }
   ],
-  "steps": 4,
+  "steps": 6,
   "input": {
     "question": "报销期限多久",
     "history": [],

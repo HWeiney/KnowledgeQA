@@ -12,9 +12,9 @@
     {
       "step": 1,
       "action": "search",
-      "reason": "需查找密码重置生效时间的正式说明",
+      "reason": "追问“多久生效”指密码重置生效时间，需检索相关制度",
       "parameters": {
-        "query": "企业邮箱 密码重置 多久生效"
+        "query": "企业邮箱密码重置 生效时间"
       },
       "result": [
         {
@@ -49,7 +49,7 @@
     {
       "step": 3,
       "action": "finish",
-      "reason": "已读取企业邮箱常见问题原文，其中明确说明生效时间",
+      "reason": "已读取原文，明确密码重置生效时间",
       "result_summary": "结束：answered"
     }
   ],

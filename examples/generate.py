@@ -13,6 +13,7 @@ CASES = [
     ("rewrite", "忘记公司邮件登录口令怎么办", []),
     ("followup", "多久生效？", ["--history-file", "examples/history.json"]),
     ("tool_failure", "报销期限多久", ["--fail-tool", "search"]),
+    ("source_changed", "报销期限多久", ["--data", "data/variants/aligned_documents.json"]),
 ]
 
 

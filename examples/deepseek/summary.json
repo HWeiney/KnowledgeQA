@@ -32,7 +32,7 @@
   {
     "case": "tool_failure",
     "status": "tool_error",
-    "steps": 4,
+    "steps": 6,
     "file": "examples/deepseek/tool_failure.json"
   },
   {

@@ -27,6 +27,7 @@ class DeepSeekModel:
 
     def decide(self, messages):
         body = json.dumps({"model": self.name, "messages": messages, "temperature": 0,
+                           "thinking": {"type": "disabled"}, "max_tokens": 800,
                            "response_format": {"type": "json_object"}, "stream": False}).encode()
         request = urllib.request.Request(
             self.base_url + "/chat/completions", data=body,
@@ -39,7 +40,10 @@ class DeepSeekModel:
             raise RuntimeError("model HTTP " + str(exc.code)) from exc
         except urllib.error.URLError as exc:
             raise RuntimeError("model connection failed: " + str(exc.reason)) from exc
-        content = payload["choices"][0]["message"]["content"]
+        choice = payload["choices"][0]
+        if choice.get("finish_reason") == "length":
+            raise ValueError("model JSON was truncated at max_tokens")
+        content = choice["message"]["content"]
         try:
             return json.loads(content)
         except json.JSONDecodeError as exc:
