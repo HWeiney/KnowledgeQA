@@ -5,6 +5,7 @@
 ## 评审入口
 
 - [真实模型运行结果](examples/deepseek/summary.json)：六个验收用例、一次资料替换实验和步数上限；逐案 JSON 包含输入、实际输出和完整 Trace。
+- [现场运行截图](docs/03-evaluation.md#现场运行截图)：候选人执行测试、明确答案和工具失败用例的终端截图。
 - [评估报告](docs/03-evaluation.md)：预期、实测、失败与边界。
 - [核心循环](src/agent.py)：模型选动作、工具执行、观察结果回传与步数上限。
 - [离线测试](tests/test_agent.py)和[样例核验器](examples/verify.py)：不需要 API Key。

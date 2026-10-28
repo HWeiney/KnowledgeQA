@@ -16,6 +16,22 @@
 
 检索改进：`python3 examples/evaluate_retrieval.py` 在 [13 个固定问题](../data/retrieval_cases.json)上比较无同义词基线与当前实现。预期是相关文档进入前 3（冲突题要求 D01 和 D02 都进入前 3），资料外题要求无结果。实际为基线 11/13、当前实现 13/13，逐题结果见 [retrieval_evaluation.json](../examples/retrieval_evaluation.json)。样本小且由本项目设计，不能推断真实企业语料的召回率。
 
+## 现场运行截图
+
+以下三张由候选人于 2026-10-28 在终端实际运行后截取，作为补充材料。案例截图与仓库中保存的 JSON Trace 是同类用例的独立运行；模型查询词和重试次数可能不同。完整可核验数据仍以对应 JSON Trace 和测试代码为准。
+
+**测试、样例核验与检索评测**：12 个测试通过，8/8 条真实模型样例通过核验，检索对比为 11/13 → 13/13。
+
+![测试、样例核验与检索评测的终端截图](../examples/screenshots/01-tests-and-evaluation.png)
+
+**明确答案**：现场运行返回 `answered`，引用 D03，Trace 展示 `search → read → finish`。
+
+![明确答案案例的终端截图](../examples/screenshots/02-clear-answer.png)
+
+**工具失败**：现场注入 `search` 故障后返回 `tool_error`，未给出无原文依据的报销期限。
+
+![工具失败案例的终端截图](../examples/screenshots/03-tool-failure.png)
+
 ## 失败、修复与限制
 
 - 初版接入未显式关闭 DeepSeek 默认开启的思考模式。首次批量运行及一次单独重试中，上下文追问返回非单一 JSON；复测初版时，7 例中有 5 例因额外文本导致 `model_error`。依据 [DeepSeek Chat Completions 文档](https://api-docs.deepseek.com/api/create-chat-completion/)增加 `thinking: disabled`、JSON Output 与 `max_tokens` 后稳定性改善；再次扩大运行仍观察到一次 JSON 后附加文本。现仅解析首个有效 JSON 对象并在发生时记录 `format_warning`，有回归测试覆盖。首个对象无效仍返回 `model_error`，不能保证未来每次模型输出都正确。
