@@ -1,0 +1,31 @@
+{
+  "status": "tool_error",
+  "answer": "工具失败，无法核实答案。",
+  "citations": [],
+  "gap": "injected search failure",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "查找相关文档",
+      "parameters": {
+        "query": "报销期限多久"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 2,
+      "action": "finish",
+      "reason": "无法取得可靠资料",
+      "result_summary": "结束：tool_error"
+    }
+  ],
+  "steps": 2,
+  "input": {
+    "question": "报销期限多久",
+    "history": [],
+    "model": "mock",
+    "fail_tool": "search",
+    "max_steps": 8
+  }
+}

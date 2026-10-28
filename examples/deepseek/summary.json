@@ -1,0 +1,44 @@
+[
+  {
+    "case": "clear_answer",
+    "status": "answered",
+    "steps": 3,
+    "file": "examples/deepseek/clear_answer.json"
+  },
+  {
+    "case": "conflict",
+    "status": "needs_clarification",
+    "steps": 4,
+    "file": "examples/deepseek/conflict.json"
+  },
+  {
+    "case": "outside",
+    "status": "insufficient_data",
+    "steps": 6,
+    "file": "examples/deepseek/outside.json"
+  },
+  {
+    "case": "rewrite",
+    "status": "answered",
+    "steps": 3,
+    "file": "examples/deepseek/rewrite.json"
+  },
+  {
+    "case": "followup",
+    "status": "answered",
+    "steps": 3,
+    "file": "examples/deepseek/followup.json"
+  },
+  {
+    "case": "tool_failure",
+    "status": "tool_error",
+    "steps": 4,
+    "file": "examples/deepseek/tool_failure.json"
+  },
+  {
+    "case": "source_changed",
+    "status": "answered",
+    "steps": 4,
+    "file": "examples/deepseek/source_changed.json"
+  }
+]

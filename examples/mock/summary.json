@@ -1,0 +1,44 @@
+[
+  {
+    "case": "clear_answer",
+    "status": "answered",
+    "steps": 3,
+    "exit_code": 0,
+    "file": "examples/mock/clear_answer.json"
+  },
+  {
+    "case": "conflict",
+    "status": "needs_clarification",
+    "steps": 4,
+    "exit_code": 0,
+    "file": "examples/mock/conflict.json"
+  },
+  {
+    "case": "outside",
+    "status": "insufficient_data",
+    "steps": 2,
+    "exit_code": 0,
+    "file": "examples/mock/outside.json"
+  },
+  {
+    "case": "rewrite",
+    "status": "answered",
+    "steps": 3,
+    "exit_code": 0,
+    "file": "examples/mock/rewrite.json"
+  },
+  {
+    "case": "followup",
+    "status": "answered",
+    "steps": 3,
+    "exit_code": 0,
+    "file": "examples/mock/followup.json"
+  },
+  {
+    "case": "tool_failure",
+    "status": "tool_error",
+    "steps": 2,
+    "exit_code": 2,
+    "file": "examples/mock/tool_failure.json"
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "status": "tool_error",
+  "answer": "抱歉，检索工具连续多次失败（已分别用“报销期限 规定”“费用报销 时限 制度”“报销 提交 时间 要求”检索），我目前无法读取任何报销制度原文，因此不能给出报销期限的准确答案，也不会凭空编造。请稍后重试，或直接告知报销制度文档编号/名称，我再为您核对。",
+  "citations": [],
+  "gap": "检索工具不可用，未能读取任何报销制度原文，缺少可引用的期限条款。",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "需查找报销时效相关制度",
+      "parameters": {
+        "query": "报销期限 规定"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 2,
+      "action": "search",
+      "reason": "上次检索工具失败，换查询重试",
+      "parameters": {
+        "query": "费用报销 时限 制度"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 3,
+      "action": "search",
+      "reason": "前两次检索工具失败，换同义词再试一次",
+      "parameters": {
+        "query": "报销 提交 时间 要求"
+      },
+      "error": "injected search failure"
+    },
+    {
+      "step": 4,
+      "action": "finish",
+      "reason": "三次检索均返回工具失败，无原文可引用。",
+      "result_summary": "结束：tool_error"
+    }
+  ],
+  "steps": 4,
+  "input": {
+    "question": "报销期限多久",
+    "history": [],
+    "model": "deepseek",
+    "fail_tool": "search",
+    "max_steps": 8
+  }
+}

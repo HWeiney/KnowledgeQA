@@ -1,0 +1,40 @@
+[
+  {
+    "id": "D01",
+    "title": "员工费用报销制度（A）",
+    "version_date": "2026-01-10",
+    "text": "员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+    "claims": {
+      "expense_deadline_days": "30"
+    }
+  },
+  {
+    "id": "D02",
+    "title": "员工费用报销制度（B）",
+    "version_date": "2026-04-01",
+    "text": "员工应在费用发生后30天内提交报销申请。逾期申请需说明原因。",
+    "claims": {
+      "expense_deadline_days": "30"
+    }
+  },
+  {
+    "id": "D03",
+    "title": "企业邮箱常见问题",
+    "version_date": "2026-03-05",
+    "text": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。",
+    "claims": {
+      "mail_reset_method": "登录页忘记密码",
+      "mail_reset_time": "10分钟内"
+    }
+  },
+  {
+    "id": "D04",
+    "title": "产品账号开通指南",
+    "version_date": "2026-03-12",
+    "text": "新员工的产品后台账号由直属主管在入职系统提交开通申请。信息技术团队在2个工作日内处理。",
+    "claims": {
+      "product_account_application": "直属主管在入职系统提交",
+      "product_account_time": "2个工作日内"
+    }
+  }
+]

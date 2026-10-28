@@ -1,0 +1,72 @@
+{
+  "status": "insufficient_data",
+  "answer": "抱歉，我在现有知识库中没有检索到任何关于食堂（或就餐、餐饮、供餐、后勤开放安排）的文档，因此无法确认食堂周末是否营业。已尝试“食堂 周末 营业 时间”“食堂 营业时间 安排”“食堂”“就餐 开放时间 周末”“餐饮 供餐 后勤 开放”等多组关键词，均无命中。建议您查阅最新的后勤/行政通知，或直接咨询后勤管理部门确认周末供餐安排。",
+  "citations": [],
+  "gap": "知识库中缺少食堂营业时间相关的制度或通知文档（多组关键词检索均无结果），无法给出可信的营业安排。",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "查找食堂周末营业安排",
+      "parameters": {
+        "query": "食堂 周末 营业 时间"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 2,
+      "action": "search",
+      "reason": "首次检索无结果，换用更宽泛的查询词",
+      "parameters": {
+        "query": "食堂 营业时间 安排"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 3,
+      "action": "search",
+      "reason": "两次组合检索均无结果，改用单一关键词再试",
+      "parameters": {
+        "query": "食堂"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 4,
+      "action": "search",
+      "reason": "“食堂”无结果，改用近义词与时间要素再试一次",
+      "parameters": {
+        "query": "就餐 开放时间 周末"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 5,
+      "action": "search",
+      "reason": "此前四次检索均无命中，改用餐饮后勤相关词作最后一次尝试",
+      "parameters": {
+        "query": "餐饮 供餐 后勤 开放"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 6,
+      "action": "finish",
+      "reason": "多轮检索均无命中，知识库无相关原文可引用，故如实说明缺口。",
+      "result_summary": "结束：insufficient_data"
+    }
+  ],
+  "steps": 6,
+  "input": {
+    "question": "食堂周末营业吗",
+    "history": [],
+    "model": "deepseek",
+    "fail_tool": null,
+    "max_steps": 8
+  }
+}

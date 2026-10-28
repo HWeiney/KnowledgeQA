@@ -1,0 +1,73 @@
+{
+  "status": "answered",
+  "answer": "企业邮箱密码重置通常在10分钟内生效。",
+  "citations": [
+    {
+      "doc_id": "D03",
+      "quote": "密码重置通常在10分钟内生效。"
+    }
+  ],
+  "gap": "",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "需查找密码重置生效时间的正式说明",
+      "parameters": {
+        "query": "企业邮箱 密码重置 多久生效"
+      },
+      "result": [
+        {
+          "id": "D03",
+          "title": "企业邮箱常见问题",
+          "version_date": "2026-03-05",
+          "score": 8,
+          "preview": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置"
+        }
+      ],
+      "result_summary": "找到 1 篇文档：D03"
+    },
+    {
+      "step": 2,
+      "action": "read",
+      "reason": "需读取原文确认密码重置生效时间",
+      "parameters": {
+        "doc_id": "D03"
+      },
+      "result": {
+        "id": "D03",
+        "title": "企业邮箱常见问题",
+        "version_date": "2026-03-05",
+        "text": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。",
+        "claims": {
+          "mail_reset_method": "登录页忘记密码",
+          "mail_reset_time": "10分钟内"
+        }
+      },
+      "result_summary": "D03 原文：忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。"
+    },
+    {
+      "step": 3,
+      "action": "finish",
+      "reason": "已读取企业邮箱常见问题原文，其中明确说明生效时间",
+      "result_summary": "结束：answered"
+    }
+  ],
+  "steps": 3,
+  "input": {
+    "question": "多久生效？",
+    "history": [
+      {
+        "role": "user",
+        "content": "企业邮箱密码忘记了怎么办？"
+      },
+      {
+        "role": "assistant",
+        "content": "请在邮箱登录页重置密码。"
+      }
+    ],
+    "model": "deepseek",
+    "fail_tool": null,
+    "max_steps": 8
+  }
+}

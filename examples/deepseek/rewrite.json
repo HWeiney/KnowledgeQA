@@ -1,0 +1,64 @@
+{
+  "status": "answered",
+  "answer": "如果忘记公司邮箱登录口令，可在邮箱登录页点击“忘记密码”，使用员工手机号完成验证后设置新密码。密码重置通常会在10分钟内生效。",
+  "citations": [
+    {
+      "doc_id": "D03",
+      "quote": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。"
+    }
+  ],
+  "gap": "",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "查找公司邮件密码重置流程",
+      "parameters": {
+        "query": "公司邮件 登录口令 忘记 密码 重置"
+      },
+      "result": [
+        {
+          "id": "D03",
+          "title": "企业邮箱常见问题",
+          "version_date": "2026-03-05",
+          "score": 10,
+          "preview": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置"
+        }
+      ],
+      "result_summary": "找到 1 篇文档：D03"
+    },
+    {
+      "step": 2,
+      "action": "read",
+      "reason": "读取邮箱常见问题以确认完整重置流程",
+      "parameters": {
+        "doc_id": "D03"
+      },
+      "result": {
+        "id": "D03",
+        "title": "企业邮箱常见问题",
+        "version_date": "2026-03-05",
+        "text": "忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。",
+        "claims": {
+          "mail_reset_method": "登录页忘记密码",
+          "mail_reset_time": "10分钟内"
+        }
+      },
+      "result_summary": "D03 原文：忘记企业邮箱密码时，在邮箱登录页点击“忘记密码”，使用员工手机号验证后设置新密码。密码重置通常在10分钟内生效。"
+    },
+    {
+      "step": 3,
+      "action": "finish",
+      "reason": "已读取企业邮箱常见问题，其中包含密码重置方法及生效时间。",
+      "result_summary": "结束：answered"
+    }
+  ],
+  "steps": 3,
+  "input": {
+    "question": "忘记公司邮件登录口令怎么办",
+    "history": [],
+    "model": "deepseek",
+    "fail_tool": null,
+    "max_steps": 8
+  }
+}

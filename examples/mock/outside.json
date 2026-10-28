@@ -1,0 +1,32 @@
+{
+  "status": "insufficient_data",
+  "answer": "现有资料没有相关答案。",
+  "citations": [],
+  "gap": "缺少相关制度或 FAQ",
+  "trace": [
+    {
+      "step": 1,
+      "action": "search",
+      "reason": "查找相关文档",
+      "parameters": {
+        "query": "食堂周末营业吗"
+      },
+      "result": [],
+      "result_summary": "找到 0 篇文档："
+    },
+    {
+      "step": 2,
+      "action": "finish",
+      "reason": "检索无结果",
+      "result_summary": "结束：insufficient_data"
+    }
+  ],
+  "steps": 2,
+  "input": {
+    "question": "食堂周末营业吗",
+    "history": [],
+    "model": "mock",
+    "fail_tool": null,
+    "max_steps": 8
+  }
+}
